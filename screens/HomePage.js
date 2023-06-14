@@ -26,16 +26,15 @@ const HomePage = () => {
           source={require("../assets/group-13.png")}
         />
       </TouchableOpacity>
-      <View style={[styles.sistemaBarraArriba, styles.capIconPosition]}>
+      <View style={styles.sistemaBarraArriba}>
         <Text style={[styles.time, styles.timeFlexBox]}>9:41</Text>
         <View style={styles.battery}>
-          <View style={styles.border} />
+          <View style={styles.capacity} />
           <Image
-            style={[styles.capIcon, styles.capIconPosition]}
+            style={styles.capIcon}
             contentFit="cover"
             source={require("../assets/cap.png")}
           />
-          <View style={styles.capacity} />
         </View>
         <Image
           style={styles.wifiIcon}
@@ -71,10 +70,6 @@ const HomePage = () => {
 };
 
 const styles = StyleSheet.create({
-  capIconPosition: {
-    right: 0,
-    position: "absolute",
-  },
   timeFlexBox: {
     textAlign: "center",
     color: Color.black,
@@ -105,40 +100,30 @@ const styles = StyleSheet.create({
     width: 54,
     top: "50%",
   },
-  border: {
-    marginTop: -5.67,
-    right: 2,
-    borderRadius: 3,
-    borderStyle: "solid",
-    borderColor: "#000",
-    borderWidth: 1,
-    width: 22,
-    opacity: 0.35,
-    height: 11,
-    top: "50%",
-    position: "absolute",
-  },
-  capIcon: {
-    marginTop: -2,
-    width: 1,
-    height: 4,
-    opacity: 0.4,
-    top: "50%",
-  },
   capacity: {
-    marginTop: -3.67,
-    right: 4,
     borderRadius: 1,
     backgroundColor: Color.black,
     width: 18,
     height: 7,
-    top: "50%",
-    position: "absolute",
+  },
+  capIcon: {
+    width: 1,
+    height: 4,
+    opacity: 0.4,
+    marginLeft: 3,
   },
   battery: {
     marginTop: -4.67,
-    right: 14,
-    width: 24,
+    right: 17,
+    borderRadius: 3,
+    borderStyle: "solid",
+    borderColor: "rgba(0, 0, 0, 0.35)",
+    borderWidth: 1,
+    width: 22,
+    flexDirection: "row",
+    paddingRight: 4,
+    paddingBottom: 2,
+    alignItems: "center",
     height: 11,
     top: "50%",
     position: "absolute",
@@ -153,8 +138,10 @@ const styles = StyleSheet.create({
   },
   sistemaBarraArriba: {
     top: 0,
+    right: 0,
     left: 0,
     height: 40,
+    position: "absolute",
   },
   container: {
     left: 131,

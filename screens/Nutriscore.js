@@ -15,7 +15,7 @@ const Nutriscore = () => {
 
   return (
     <View style={styles.nutriscore}>
-      <View style={[styles.sistemaBarraArriba, styles.groupChildPosition]}>
+      <View style={[styles.sistemaBarraArriba, styles.frameParentPosition]}>
         <Text style={styles.time}>9:41</Text>
         <View style={[styles.battery, styles.borderPosition]}>
           <View style={[styles.border, styles.borderPosition]} />
@@ -37,7 +37,7 @@ const Nutriscore = () => {
           source={require("../assets/cellular-connection.png")}
         />
       </View>
-      <View style={[styles.tarjeta, styles.tarjetaPosition]}>
+      <View style={styles.tarjeta}>
         <View style={[styles.tarjetaChild, styles.iconLayout]} />
         <Image
           style={[styles.image5Icon, styles.iconLayout]}
@@ -55,7 +55,9 @@ const Nutriscore = () => {
       />
       <Pressable
         style={styles.wrapper}
-        onPress={() => navigation.navigate("HomePage")}
+        onPress={() =>
+          navigation.navigate("BottomTabsRoot", { screen: "HomePage" })
+        }
       >
         <Image
           style={styles.iconLayout1}
@@ -109,37 +111,37 @@ Razón negativa`}</Text>
         NUTRI-SCORE:
       </Text>
       <Pressable
-        style={[styles.frameParent, styles.tarjetaPosition]}
+        style={[styles.nutriscoreInner, styles.frameParentLayout]}
         onPress={() => navigation.navigate("ScanPage")}
       >
-        <View style={styles.seguirEscaneandoWrapper}>
-          <Text style={[styles.seguirEscaneando, styles.milanesaDeSojaTypo]}>
-            {" "}
-            SEGUIR ESCANEANDO
-          </Text>
-        </View>
-        <Image
-          style={[styles.groupChild, styles.groupChildPosition]}
-          contentFit="cover"
-          source={require("../assets/group-1.png")}
-        />
+        <Pressable
+          style={[styles.frameParent, styles.frameParentLayout]}
+          onPress={() => navigation.navigate("ScanPage")}
+        >
+          <View style={styles.seguirEscaneandoWrapper}>
+            <Text style={[styles.seguirEscaneando, styles.milanesaDeSojaTypo]}>
+              {" "}
+              SEGUIR ESCANEANDO
+            </Text>
+          </View>
+          <Image
+            style={styles.groupChild}
+            contentFit="cover"
+            source={require("../assets/group-1.png")}
+          />
+        </Pressable>
       </Pressable>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  groupChildPosition: {
+  frameParentPosition: {
+    left: 0,
     top: 0,
-    position: "absolute",
   },
   borderPosition: {
     top: "50%",
-    position: "absolute",
-  },
-  tarjetaPosition: {
-    width: 333,
-    left: 29,
     position: "absolute",
   },
   iconLayout: {
@@ -166,6 +168,11 @@ const styles = StyleSheet.create({
   nutriScoreTypo: {
     fontFamily: FontFamily.interBold,
     textAlign: "center",
+    position: "absolute",
+  },
+  frameParentLayout: {
+    height: 84,
+    width: 333,
     position: "absolute",
   },
   time: {
@@ -222,9 +229,9 @@ const styles = StyleSheet.create({
     height: 11,
   },
   sistemaBarraArriba: {
-    left: 0,
     height: 40,
     right: 0,
+    position: "absolute",
   },
   tarjetaChild: {
     top: "0%",
@@ -266,6 +273,9 @@ const styles = StyleSheet.create({
     elevation: 4,
     shadowOpacity: 1,
     height: 128,
+    width: 333,
+    left: 29,
+    position: "absolute",
   },
   image10Icon: {
     top: 251,
@@ -356,9 +366,16 @@ const styles = StyleSheet.create({
     left: -4,
     width: 92,
     height: 92,
+    top: 0,
+    position: "absolute",
   },
   frameParent: {
+    left: 0,
+    top: 0,
+  },
+  nutriscoreInner: {
     top: 689,
+    left: 29,
     height: 84,
   },
   nutriscore: {

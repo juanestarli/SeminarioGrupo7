@@ -82,7 +82,9 @@ const ProductDataPageNOAPTO1 = () => {
       </Pressable>
       <Pressable
         style={[styles.wrapper, styles.wrapperLayout]}
-        onPress={() => navigation.navigate("HomePage")}
+        onPress={() =>
+          navigation.navigate("BottomTabsRoot", { screen: "HomePage" })
+        }
       >
         <Image
           style={styles.iconLayout1}

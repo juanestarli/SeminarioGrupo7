@@ -74,7 +74,9 @@ const ScanPage = () => {
       </View>
       <Pressable
         style={styles.container}
-        onPress={() => navigation.navigate("HomePage")}
+        onPress={() =>
+          navigation.navigate("BottomTabsRoot", { screen: "HomePage" })
+        }
       >
         <Image
           style={styles.icon}

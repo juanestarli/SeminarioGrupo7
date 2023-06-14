@@ -83,7 +83,9 @@ const HistorialPage = () => {
       <View style={styles.historialPageInner}>
         <Pressable
           style={[styles.wrapper, styles.wrapperPosition]}
-          onPress={() => navigation.navigate("HomePage")}
+          onPress={() =>
+            navigation.navigate("BottomTabsRoot", { screen: "HomePage" })
+          }
         >
           <Image
             style={styles.iconLayout}

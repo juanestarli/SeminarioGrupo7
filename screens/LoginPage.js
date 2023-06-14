@@ -23,7 +23,9 @@ const LoginPage = () => {
       />
       <Pressable
         style={styles.botonGrande}
-        onPress={() => navigation.navigate("HomePage")}
+        onPress={() =>
+          navigation.navigate("BottomTabsRoot", { screen: "HomePage" })
+        }
       >
         <Text style={styles.a}>INICIAR SESIÓN</Text>
       </Pressable>

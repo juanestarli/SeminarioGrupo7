@@ -55,7 +55,9 @@ CONSUMO`}</Text>
       </Pressable>
       <Pressable
         style={styles.wrapper}
-        onPress={() => navigation.navigate("HomePage")}
+        onPress={() =>
+          navigation.navigate("BottomTabsRoot", { screen: "HomePage" })
+        }
       >
         <Image
           style={styles.iconLayout1}

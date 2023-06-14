@@ -18,9 +18,86 @@ import HomePage from "./screens/HomePage";
 import ProductDataPageSINRESTRICC from "./screens/ProductDataPageSINRESTRICC";
 import ProductDataPageNOAPTO1 from "./screens/ProductDataPageNOAPTO1";
 import ScanPage2 from "./screens/ScanPage2";
+import IconHome21 from "./components/IconHome21";
+import IconHome2 from "./components/IconHome2";
+import IconUser1 from "./components/IconUser1";
+import IconUser from "./components/IconUser";
+import IconBookSaved1 from "./components/IconBookSaved1";
+import IconBookSaved from "./components/IconBookSaved";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { View, Text, Pressable, TouchableOpacity } from "react-native";
+
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+const Tab = createBottomTabNavigator();
+function BottomTabsRoot({ navigation }) {
+  const [bottomTabItemsNormal] = React.useState([
+    <IconHome2 />,
+    <IconUser />,
+    <IconBookSaved />,
+  ]);
+  const [bottomTabItemsActive] = React.useState([
+    <IconHome21 />,
+    <IconUser1 />,
+    <IconBookSaved1 />,
+  ]);
+  return (
+    <Tab.Navigator
+      screenOptions={{ headerShown: false }}
+      initialRouteName="HomePage"
+      tabBar={({ state, descriptors, navigation }) => {
+        const activeIndex = state.index;
+        return (
+          <View
+            style={{
+              width: 390,
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              height: 56,
+            }}
+          >
+            {bottomTabItemsNormal.map((item, index) => {
+              const isFocused = state.index === index;
+              return (
+                <Pressable
+                  key={index}
+                  onPress={() => {
+                    navigation.navigate({
+                      name: state.routes[index].name,
+                      merge: true,
+                    });
+                  }}
+                >
+                  {activeIndex === index
+                    ? bottomTabItemsActive[index] || item
+                    : item}
+                </Pressable>
+              );
+            })}
+          </View>
+        );
+      }}
+    >
+      <Tab.Screen
+        name="HomePage"
+        component={HomePage}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="RestrictionsPage"
+        component={RestrictionsPage}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="HistorialPage"
+        component={HistorialPage}
+        options={{ headerShown: false }}
+      />
+    </Tab.Navigator>
+  );
+}
 
 const App = () => {
   const [hideSplashScreen, setHideSplashScreen] = React.useState(false);
@@ -52,10 +129,8 @@ const App = () => {
     <>
       <NavigationContainer>
         {hideSplashScreen ? (
-          <Stack.Navigator
-            initialRouteName="HomePage"
-            screenOptions={{ headerShown: false }}
-          >
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="BottomTabsRoot" component={BottomTabsRoot} />
             <Stack.Screen
               name="Registrarse"
               component={Registrarse}
@@ -82,11 +157,6 @@ const App = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="HistorialPage"
-              component={HistorialPage}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
               name="DisagreePage"
               component={DisagreePage}
               options={{ headerShown: false }}
@@ -94,11 +164,6 @@ const App = () => {
             <Stack.Screen
               name="ProductDataPageAPTO"
               component={ProductDataPageAPTO}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="RestrictionsPage"
-              component={RestrictionsPage}
               options={{ headerShown: false }}
             />
             <Stack.Screen
@@ -114,11 +179,6 @@ const App = () => {
             <Stack.Screen
               name="ScanPage"
               component={ScanPage}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="HomePage"
-              component={HomePage}
               options={{ headerShown: false }}
             />
             <Stack.Screen
